@@ -91,4 +91,6 @@ int main ()
 /*
 c++ style 메모리 할당을 사용해도 delete를 빼먹으면 memmory leak 이 발생
 그래서 위와 같이 safer c++ 메모리 할당 방식을 쓰는거임
+바로 스마트 포인터와 벡터
+
 */
