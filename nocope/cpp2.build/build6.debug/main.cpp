@@ -2,39 +2,39 @@
 #include <vector>
 using namespace std;
 
-int add(vector<int>& vIn)
-{
-  for(int & el : vIn)
-  {
-    ++el;
-  }
-  return 0;
-}
+// int add(vector<int>& vIn)
+// {
+//   for(int & el : vIn)
+//   {
+//     ++el;
+//   }
+//   return 0;
+// }
 
-int sub(vector<int>& vIn)
-{
-  for(int & el : vIn)
-  {
-    --el;
-  }
-  return 1;
-}
+// int sub(vector<int>& vIn)
+// {
+//   for(int & el : vIn)
+//   {
+//     --el;
+//   }
+//   return 1;
+// }
 
-int main()
-{
-  vector<int> v{1, 2, 3, 4, 5};
-  int a = 10;
-  if (a%2 == 0)
-  {
-    a = add(v);
-  }
-  else
-  {
-    a = sub(v);
-  }
-  cout << a << endl;
-  return 0;
-}
+// int main()
+// {
+//   vector<int> v{1, 2, 3, 4, 5};
+//   int a = 10;
+//   if (a%2 == 0)
+//   {
+//     a = add(v);
+//   }
+//   else
+//   {
+//     a = sub(v);
+//   }
+//   cout << a << endl;
+//   return 0;
+// }
 
 
 
