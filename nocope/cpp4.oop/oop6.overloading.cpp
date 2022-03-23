@@ -42,7 +42,7 @@ class Cat
     int mAge;
 };
 
-bool operator==(const Cat& lhs, const Cat& rhs)
+bool operator==(const Cat& lhs, const Cat& rhs)     // 안전한 C++ 코드 작성을 위해서는 const를 붙일수 있는 모든곳에 const를 붙이는 습관. operator overloading 의 경우  함수 내에서 전달받은 인자를 수정할 이유가 없기때문에 const를 붙임
 {
   return lhs.age() == rhs.age() && lhs.name() == rhs.name();
 }
