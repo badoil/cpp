@@ -36,7 +36,7 @@ class Cats
     // {
     //   return mName;
     // }
-    const string& name() const   // 그래서 return by reference 를 하고 있으므로 복사가 안일어남
+    const string& name() const   // 그래서 return by const reference 를 하고 있으므로 복사가 안일어남, 앞에 const를 붙이는 이유는 받은 레퍼런스가 가리키는 문자열을 수정하지 못하도록 막음
     {
       return mName;
     }
@@ -54,6 +54,10 @@ int main()
   const Cat navi(1);      // const 를 여기 붙이면 const 붙인 함수만 호출할 수 있음
   navi.speakAge(); 
 
+  const Cats kitty;
+  string name = kitty.name();  // deep copy
+  const string & nameRef = kitty.name(); //  no deep copy
+
   return 0;
 }
 
@@ -70,5 +74,8 @@ constructor에 매개변수가 하나일때는 explicit 키워드 사용해주�
 
 friend
 이 키워드는 oop 컨셉을 무너뜨릴 수 있으므로 가급적 사용말것
+
+encapsulation interface 만들때 값이 작으면 return by value 해도 되지만
+값이 크면 return by const reference 가 더 효율적
 
 */
