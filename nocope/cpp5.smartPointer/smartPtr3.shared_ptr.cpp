@@ -15,7 +15,7 @@ class Cat
     {
       cout << "cats destructor" << endl;
     }
-    shared_ptr<Cat> mVar;
+    shared_ptr<Cat> mVar;                         // 이놈을 weak_ptr 로 바꿔주면 메모리릭 발생안할 수 있음
   private:
     int mAge;
 };
