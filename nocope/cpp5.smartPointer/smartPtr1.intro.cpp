@@ -72,7 +72,7 @@ Resource Aquisition Is Initialization
 이 둘의 라이프사이클을 일치시키면 메모리릭을 원천적으로 차단할 수 있음
 
 
-unique pointer
+unique pointer : exclusive ownership
 
-shared pointer
+shared pointer : shared ownership
 */
