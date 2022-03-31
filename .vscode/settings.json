@@ -61,6 +61,7 @@
     "unordered_map": "cpp",
     "utility": "cpp",
     "vector": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "deque": "cpp"
   }
 }
