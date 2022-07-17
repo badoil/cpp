@@ -62,6 +62,7 @@
     "utility": "cpp",
     "vector": "cpp",
     "variant": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "thread": "cpp"
   }
 }
