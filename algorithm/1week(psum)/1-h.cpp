@@ -19,7 +19,7 @@
 using namespace std;  
 typedef long long ll;
 
-int n, k, temp, psum[100001], ret = -10000000;
+int n, k, temp, psum[100001], ret = -10000000;  // point
 
 int main () {
     cin >> n >> k;
@@ -36,3 +36,7 @@ int main () {
     cout << ret << "\n";
     return 0;
 }
+
+// 최대값을 구하기때문에 최소값을 정해놓고 시작
+// 최악의 경우는 100,000일 동안 -100도가 연속되는 경우, 즉 100,000 * -100 = -10000000 를 ret 에 놓는다
+// 그리고 그것을 max()함수로 결과값을 갱신시켜나간다.
