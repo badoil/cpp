@@ -15,3 +15,33 @@
 // 7    ->  6 (111111)     1이 6자리
 // 9901  -> 12 (111111111111)   1이 12 자리
 
+#include<bits/stdc++.h>
+using namespace std;
+
+int n;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    while(cin >> n) {           // 입력은 여러 개의 테스트 케이스라고 할때 계속 입력을 받게 함.
+        int cnt = 1, ret = 1;
+        while(true) {
+            if (ret % n == 0) {
+                cout << cnt << "\n";
+                break;
+            }
+
+            ret = (ret*10) + 1; // 11111, 요런 수를 한자리씩 더 만드는 식
+            ret %= n;           // [(a mod n) * (b mod n)] mod n = (a*b) mod n
+            cnt++;
+            
+        }
+    }
+}
+
+// 입력은 여러 개의 테스트 케이스라고 할때 계속 입력을 받게 함
+// 자리수 출력이라서 cnt 하나씩 올려주고 그게 맞으면 출력
+// ret % n == 0 이거를 구해야하는데, 마지막에만 %를 하는게 아니라
+// 수가 너무 커지기 전에 중간 중간 %를 계속 해줌. 즉 모듈라 연산
