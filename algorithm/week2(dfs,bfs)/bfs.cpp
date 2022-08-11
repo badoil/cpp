@@ -23,9 +23,6 @@ int dy[4] = {-1, 0, 1, 0};
 int dx[4] = {0, 1, 0, -1};
 int m, n, a[104][104], visited[104][104], ey, ex, my, mx, ny, nx, yy, xx;
 
-void bfs(int y, int x) {
-    
-}
 
 int main() {
     cin >> m >> n;
