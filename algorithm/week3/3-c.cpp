@@ -67,7 +67,7 @@ int main() {
 
     while(true) {
         bool flag = 0;
-        fill(&visited[0][0], &visited[0][0] + 54 * 54, 0);
+        fill(&visited[0][0], &visited[0][0] + 54 * 54, 0);          // 포문 끝나면 visited 초기화해야함, 다시 dfs 처음부터 호출할거니깐
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (visited[i][j] != 1) {
