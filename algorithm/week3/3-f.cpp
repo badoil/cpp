@@ -48,6 +48,9 @@ void solve(int idx, int num) {      // 메인 함수에서 solve(0, numList[0]) 
 }
 
 int main () {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL); 
+    cout.tie(NULL); 
     cin >> n;
     cin >> s;
     
