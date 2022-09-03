@@ -69,8 +69,8 @@ int dx[4] = { 0, 1, 0, -1};
 
 int main() {
     scanf("%d %d", &n, &m);
-    scanf("%d %d %d %d", &x1, &y1, &x2, &y2);
-    x1--, y1--, x2--, y2--;
+    scanf("%d %d %d %d", &y1, &x1, &y2, &x2);
+    y1--, x1--, y2--, x2--;
     cin >> n >> m;
 
     for(int i=0; i<n; i++) {
@@ -78,9 +78,9 @@ int main() {
     }
 
     queue<int> q;
-    q.push(1000*x1+y1);
-    visited[x1][y1]=1;
-    while(a[x2][y2] != '0'){
+    q.push(1000*y1+x1);
+    visited[y1][x1]=1;
+    while(a[y2][x2] != '0'){
         cnt++;
         queue<int> temp;
         while(q.size()) {
