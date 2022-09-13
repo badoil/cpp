@@ -63,6 +63,8 @@
     "vector": "cpp",
     "variant": "cpp",
     "deque": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "regex": "cpp",
+    "map": "cpp"
   }
 }
