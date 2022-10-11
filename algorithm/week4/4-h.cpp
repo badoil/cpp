@@ -24,7 +24,6 @@
 // 13 11 10 8 10 12 13
 
 
-
 #include<bits/stdc++.h>
 using namespace std;
 
