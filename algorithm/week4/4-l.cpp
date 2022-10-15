@@ -25,18 +25,18 @@ int main () {
     cin >> t;
 
     for(int i=0; i<t; i++) {
-        deque<int> d;
+        deque<int> d;           // deque 자료구조
         cin >> ns >> fs >> n;
         n = 0;
         for (char c: ns) {
             if (c == '[' || c == ']') continue;
-            if (c >= '0' && c <= '9') n = n * 10 + (c - '0');
-            else {
+            if (c >= '0' && c <= '9') n = n * 10 + (c - '0');   // (1 ≤ c ≤ 100), 쉼표가 아니고 숫자인경우
+            else {                  // 쉼표인 경우
                 d.push_back(n);
-                n=0;
+                n=0;    // 초기화
             }
         }
-        if (n > 0) d.push_back(n);
+        if (n > 0) d.push_back(n);  // 마지막 수 넣어줌
 
         bool rev = false;
         bool error = false;
@@ -47,7 +47,7 @@ int main () {
                     error = true;
                     break;
                 }
-                if (rev) d.pop_back();
+                if (rev) d.pop_back();      // 덱 이용한 부분
                 else d.pop_front();
             }
         }
