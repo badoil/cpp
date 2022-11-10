@@ -51,7 +51,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int r, c, t, a[54][54], tmp[54][54];
+int r, c, t, a[54][54], tmp[54][54], ret;
 int dy1[4] = {0, -1, 0, 0};
 int dx1[4] = {1, 0, -1, 0};
 int dy2[4] = {0, 1, 0, -1};
@@ -59,6 +59,7 @@ int dx2[4] = {1, 0, -1, 0};
 
 vector<pair<int, int>> v1;
 vector<pair<int, int>> v2;
+
 
 
 vector<pair<int, int>> chung(int y, int x, int dy[4], int dx[4]) {
@@ -83,16 +84,81 @@ vector<pair<int, int>> chung(int y, int x, int dy[4], int dx[4]) {
     return v;
 }
 
+void misego(int dy[4], int dx[4]) {
+    fill(&tmp[0][0], &tmp[0][0]+54*54, 0);
+    queue<pair<int, int>> q;
+    for(int i=0; i<r; i++) {
+        for(int j=0; j<c; j++) {
+            if (a[i][j] != -1) q.push({i, j});
+        }
+    }
+    
+    while(q.size()) {
+        int y, x;
+        tie(y, x) = q.front();
+        q.pop();
+        int spread = a[y][x]/5;
+        for(int i=0; i<4; i++) {
+            int ny = dy[i] + y;
+            int nx = dx[i] + x;
+            if (ny<0  || ny>=r || nx<0 || nx>=c || a[ny][nx]==-1) continue;
+            tmp[ny][nx] += spread;
+            a[y][x] -= spread;
+        }
+    }
+
+    for(int i=0; i<r; i++) {
+        for (int j=0; j<c; j++) {
+            a[i][j] += tmp[i][j];
+        }
+    }
+
+    return;
+}
+
+void go(vector<pair<int, int>> &v) {
+    for(int i=v.size()-1; i>=0; i--) {
+        if (i=0) a[v[0].first][v[0].second] = 0;
+        a[v[i].first][v[i].second] = a[v[i-1].first][v[i-1].second];
+    }
+}
+
 int main () {
     cin >> r >> c >> t;
 
+    int flag = 0;
     for (int i=0; i<r; i++) {
         for (int j=0; j<c; j++) {
             cin >> a[i][j];
 
-            if (a[i][j]==-1) {
-                
+            if (a[i][j]==-1 && !flag) {
+                v1 = chung(i, j, dy1, dx1);
+                flag = 1;
+            } else {
+                v2 = chung(i, j, dy2, dx2);
             }
         }
     }
+    
+    while (t--)
+    {
+        misego(dy1, dx1);
+        go(v1);
+        go(v2);        
+    }
+    
+    for(int i=0; i<r; i++) {
+        for (int j=0; j<c; j++) {
+            ret += a[i][j];
+        }
+    }
+    
+    return 0;
 }
+
+
+// 구현문제
+// 1. 공기청정기가 움직이는 좌표를 수집
+// 2. 맵상에서 시간에 따라 미세먼지 움직이게 하기
+// 3. 공기청정기 작동하면서 미세먼지 움직이게 하기
+// 그에따른 자료구조 중요, 체크할것
