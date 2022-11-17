@@ -12,16 +12,49 @@
 
 
 
+#include<bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+ll n, l, idx, b, ret;
 
 
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
+    cin >> n >> l;
+    vector<pair<int, int>> a(n);
 
+    for (int i=0; i<n; i++) {
+        cin >> a[i].first >> a[i].second;
+    }
+    
+    sort(a.begin(), a.end());
+    
+    for(int i=0; i<n; i++) {
+        if (a[i].second <= idx) continue;       // 이미 있는 널빤지가 이미 물웅덩이를 덮고 있는 경우
+        if (a[i].first > idx) {                 // 이미 있는 널빤지가 새 물웅덩이를 못 덭는 경우
+            b = ((a[i].second - a[i].first)/l) + ((a[i].second - a[i].first) % l ? 1 : 0);
+            ret += b;
+            idx = a[i].first + b*l;
+        } else {                                // 이미 있는 널빤지가 새 물웅덩이를 부분적으로 덮는 경우
+            b = ((a[i].second - idx)/l) + ((a[i].second - idx) % l ? 1 : 0);
+            ret += b;
+            idx = idx + b*l;
+        }
+    }
 
-
-
+    cout << ret << "\n";
+    return 0;
+}
 
 
 
 
 // 카운팅 배열 생각할수도 있는데, 배열이 길이라고 했을때 10억개의 크기인 배열이므로
 // 배열은 못씀
+// 고로 벡터 사용
+// 웅덩이의 시작점과 끝점을 놓여진 널빤지의 끝점과 비교하면서 
+// 최소한의 널빤지 개수를 더해 나감
