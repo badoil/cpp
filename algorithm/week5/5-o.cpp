@@ -4,7 +4,8 @@
 // 1 2 3
 // 2 1 1
 // 4 5 6
-// 배열은 회전 연산을 수행할 수 있다. 회전 연산은 세 정수 (r, c, s)로 이루어져 있고, 가장 왼쪽 윗 칸이 (r-s, c-s), 가장 오른쪽 아랫 칸이 (r+s, c+s)인 정사각형을 시계 방향으로 한 칸씩 돌린다는 의미이다. 배열의 칸 (r, c)는 r행 c열을 의미한다.
+// 배열은 회전 연산을 수행할 수 있다. 회전 연산은 세 정수 (r, c, s)로 이루어져 있고, 가장 왼쪽 윗 칸이 (r-s, c-s), 가장 오른쪽 아랫 칸이 (r+s, c+s)인 정사각형을 시계 방향으로 한 칸씩 돌린다는 의미이다. 
+// 배열의 칸 (r, c)는 r행 c열을 의미한다.
 
 // 예를 들어, 배열 A의 크기가 6×6이고, 회전 연산이 (3, 4, 2)인 경우에는 아래 그림과 같이 회전하게 된다.
 
@@ -91,8 +92,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-int n, m, k, a[104][104], b[104][104], r, c, s, ret=987654321, sy, sx, ey, ex, visited[104][104], dir;
+int INF = 987654321;
+int n, m, k, a[104][104], b[104][104], r, c, s, ret=INF, sy, sx, ey, ex, visited[104][104], dir;
 int dy[4] = {-1, 0, 1, 0};
 int dx[4] = {0, 1, 0, -1};
 
@@ -126,7 +127,7 @@ void go(int y, int x, int first) {
 
 void rotateAll(int r, int c, int cnt) {
     for (int i=0; i<cnt; i++) {
-        sy = r - 1 * i;
+        sy = r - 1 * i;         // 직사각형 범위 안의 작은 직사각형도 시계방향으로 돌리기 때문에
         sx = c - 1 * i;
         ey = r + 1 * i;
         ex = c + 1 * i;
@@ -139,14 +140,24 @@ void rotateAll(int r, int c, int cnt) {
         go(sy, sx, 1);
 
         vector<int> vvv;
-        for(pair<int, int> p: vv) vvv.push_back(b[p.first][p.second]);
-        rotate(vvv.begin(), vvv.begin() + vvv.size() - 1, vvv.end());
-        for(int i=0; i<vv.size(); i++) b[vv[i].first][vv[i].second] = vvv[i];
+        for(pair<int, int> p: vv) vvv.push_back(b[p.first][p.second]);          // 좌표에 해당하는 값
+        rotate(vvv.begin(), vvv.begin() + vvv.size() - 1, vvv.end());           // 이를 로테이션(rotate 함수 이용해서)
+        for(int i=0; i<vv.size(); i++) b[vv[i].first][vv[i].second] = vvv[i];   // 로테이션 결과를 맵에 입력
     }   
 }
 
 int solve() {
-    for (int i: v_idx) rotateAll(v[i].r, v[i].c, v[i].s);
+    for (int i: v_idx) rotateAll(v[i].r, v[i].c, v[i].s);   // 연산의 한 세트 과정
+    int _ret = INF;
+    for (int i=0; i<r; i++) {
+        int _cnt;
+        for (int j=0; j<c; j++) {
+            _cnt += b[i][j];
+        }
+        _ret = min(_ret, _cnt);
+    }
+
+    return _ret;
 }
 
 int main () {
@@ -160,12 +171,19 @@ int main () {
     for (int i=0; i<k; i++) {
         cin >> r >> c >> s;
         v.push_back({r, c, s});
-        v_idx.push_back(i);
+        v_idx.push_back(i);     // 순열
     }
 
     do {
-        memcpy(b, a, sizeof(b));
+        memcpy(b, a, sizeof(b));        // 매번 맵을 초기화 해야 하기 때문에
         ret = min(ret, solve());
-    } while (next_permutation(v_idx.begin(), v_idx.end()));
+    } while (next_permutation(v_idx.begin(), v_idx.end()));     // 연산의 순서를 달리함, 모든 순열을 적용
     
 }
+
+
+// 빡쎈 구현 문제
+// 연산에 의해 이동하는 좌표를 먼저 구하고
+// 그 좌표에 해당하는 값을 벡터에 넣고 이를 로테이션(rotate 함수 이용해서)
+// 로테이션 결과를 맵에 입력
+// 그 각각의 순열 세트 중에 최소값을 출력
