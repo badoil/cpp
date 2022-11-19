@@ -81,6 +81,8 @@ int main() {
                 ny = y + dy[dir];
                 nx = x + dx[dir];
 
+                if (ny>=0 && nx>=0 && ny<r && nx<c) break;
+
                 if (dir <= 0){          // y 축으로 움직임
                     if (ny<0) {
                         s -= y;
