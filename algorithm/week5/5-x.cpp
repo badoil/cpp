@@ -159,7 +159,6 @@ int main() {
         }
     }
 
-    for (int i=0; i<v.size(); i++) {
-        dfs(i);
-    }
+    dfs(0);
+
 }
