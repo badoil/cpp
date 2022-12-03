@@ -20,13 +20,42 @@ int main () {
     scanf("%d\n", &n);
     for(int i=0; i<n; i++) {
         scanf("%d\n", &num);
-        auto lower = lower_bound(a, a+len, num);
+        auto lower = lower_bound(a, a+len, num);        // 하한값이란 특정 값 num보다 같거나 큰 값이 처음 나오는 위치, 만약 그런 값이 없으면 라스트 리턴, 여기서 라스트는 a+len
         int index = (int)(lower_bound(a, a+len, num)-a);
-        if (*lower == 0) len++;
+        if (*lower == 0) len++;     // 하한값이 없으면 최장부분수열에 새로운수가 추가되므로 최장부분수열의 길이가 하나 늘어나는 셈, *lower == 0 인 이유는 지금 a는 모두 0으로 초기화되어있음, 거기의 라스트가 0인 지점에 새로운 num 추가하는 것
         *lower = num;
-        v[i].first = index;
-        v[i].second = num;
+        v[i].first = index;         // 이렇게 하면 각 index에 오는 모든 수들을 저장하는 셈인데
+        v[i].second = num;          // 늦게 들어가는 수가 기존 수를 대치한 수이다
+    }
+    printf("%d\n", len);
+
+    stack<int> stk;
+    for (int i=n-1; i>=0; i--) {
+        if (v[i].first == len-1) {
+            stk.push(v[i].second);
+            len--;                  // v[i].first의 값이 같은 것, 즉 같은 인덱스의 값 중 가장 최신것(뒤에 있는 것)을 하나만 출력해야 하기에(대치했다면 같은 인덱스에 해당하는 여러값 존재) 마이너스 해줌
+        }
     }
 
-    
+    for (int i=0; i<stk.size(); i++) {
+        printf("%d  ", stk.top());
+        stk.pop();
+    }
+    return 0;
 }
+
+
+
+/*
+8
+1 6 2 5 7 3 5 6  
+*/
+// 이해가 어려우면 위 예시를 넣으면서 생각해보라
+
+// 하한값이란 특정 값 K보다 같거나 큰 값(작지않은 값)이 처음 나오는 위치, 만약 그런 값이 없으면 라스트 리턴
+
+// 기본 로직은
+// 기존 리스트에 num의 하한값이 없으면 num을 리스트에 푸시, 하한값이 없다는 것은 그 num이 젤 큰 수라는 뜻, 큰 수니까 끝에 푸시
+// 기존 리스트에 num의 하한값이 있으면 그 위치에 기존값을 num으로 대치
+
+// 참고 https://tjdahr25.tistory.com/19
