@@ -23,7 +23,7 @@ int main() {
     for(int i=0; i<n; i++) {
         scanf("%lld", temp);
         auto lower_pos = lower_bound(a, a+len, temp);
-        if (*lower_pos == 0) len++;
+        if (*lower_pos == 0) len++;                     // lower_pos가 주소니까 *lower_pos 해서 값으로 전환
         *lower_pos = temp;
     }
 
