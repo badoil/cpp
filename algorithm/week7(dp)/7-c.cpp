@@ -31,9 +31,9 @@ bool in(int a, int b) {
 
 int go(int a, int b) {
     if (!in(a, b) || bb[a][b] == 'H') return 0;
-    if (visited[a][b] == 1) {
-        cout << -1 << "\n";
-        exit(0);
+    if (visited[a][b] == 1) {                   // 동전을 무한번 움직일 수 있다면 -1을 출력
+        cout << -1 << "\n";                     // 즉 방문한 곳을 또 방문한다면 무한번 움직이는 셈
+        exit(0);                                // 그때 메인 함수를 끝내버림
     }
 
     int &ret = dp[a][b];        // 메모이제이션
