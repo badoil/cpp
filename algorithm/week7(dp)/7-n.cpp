@@ -58,9 +58,9 @@ void dfs(int y, int x, int cnt) {
         if (check(y, x, i)) {       // 해당부분에 색종이 붙일 수 있는지 체크
             _map[i]++;
             draw(y, x, i, 0);
-            dfs(y, x+i, cnt+1);
-            draw(y, x, i, 1);
-            _map[i]--;
+            dfs(y, x+i, cnt+1);     // 체크한 색종이 사이즈 그 다음부터 dfs 해야하므로 x+i
+            draw(y, x, i, 1);       // 다음 반복문은 새로 시작하는 판이므로 되돌려놓는다
+            _map[i]--;              // 마찬가지로 되돌려놓음
         }
     }
     return;
