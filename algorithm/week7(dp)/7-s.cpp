@@ -46,6 +46,7 @@ int main () {
         }
     }
 
+    fill(dp2, dp2+2504, INF);
     cout << go(0) << "\n";
     return 0;
 }
