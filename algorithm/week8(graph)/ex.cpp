@@ -23,6 +23,7 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> 
 
 int main () {
     scanf("%d %d %d", &V, &E, &K);
+    fill(dist, dist+20004, INF);
     for (int i=1; i<=V; i++) {
         scanf("%d %d %d", &u, &v, &w);
         adj[u].push_back(make_pair(w, v));
@@ -33,13 +34,25 @@ int main () {
     while(pq.size()) {
         int here = pq.top().second;
         int here_dist = pq.top().first;
-        
+        pq.pop();
+
+        if(dist[here] != here_dist) continue;
         for (pair<int, int> there: adj[here]) {
             int _there = there.second;
             int _there_dist = there.first;
             if (dist[_there] > dist[here] + _there_dist) {
-                
+                dist[_there] = dist[here] + _there_dist;
+                pq.push(make_pair(dist[_there], _there));
             }
         }
     }
+
+    for (int i=1; i<=V; i++) {
+        if (dist[i] == INF) puts("INF");
+        else printf("%d\n", dist[i]);
+    }
+    return 0;
 }
+
+
+// 위의 코드는 다익스트라의 정석 코드
