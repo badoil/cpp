@@ -30,7 +30,7 @@ long long sum(vector<long long> &tree, int idx) {
     return ret;
 }
 
-void update(vector<long long> &tree, int idx, int diff) {
+void update(vector<long long> &tree, int idx, long long diff) {
     while(idx < tree.size()) {
         tree[idx] += diff;
         idx += idx & -idx;
@@ -64,6 +64,9 @@ int main() {
     return 0;
 }
 
+
+// 펜윅트리 설명은 다음 블로그를 참고
+// https://yabmoons.tistory.com/438
 
 
 // 펜윅트리 
