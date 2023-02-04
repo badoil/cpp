@@ -25,7 +25,7 @@ long long sum(vector<long long> &tree, int idx) {
     long long ret;
     while(idx > 0) {
         ret += tree[idx];
-        idx -= idx & -idx;
+        idx -= (idx & -idx);
     }
     return ret;
 }
@@ -33,7 +33,7 @@ long long sum(vector<long long> &tree, int idx) {
 void update(vector<long long> &tree, int idx, long long diff) {
     while(idx < tree.size()) {
         tree[idx] += diff;
-        idx += idx & -idx;
+        idx += (idx & -idx);
     }
 }
 
