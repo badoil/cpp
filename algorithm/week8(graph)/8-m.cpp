@@ -51,6 +51,7 @@ int main() {
     fill(dp, dp + 3000*3000, INF);
     
     // dp[i][j] 디피를 생성, 이때 디피는 2차원좌표 -> 2차원좌표로 표현하는데, 2차원좌표를 i*100+j 로 1차원형식으로 표현
+    // dp는 각 지점들로 이동할때마다의 시간을 저장
     for (int i=0; i<n; i++) {
         for (int j=0; j<m; j++) {
             for (int k=0; k<4; k++) {
@@ -58,11 +59,36 @@ int main() {
                 int nx = j + dx[k];
                 int diff = abs(a[i][j]-a[ny][nx]);
                 if (ny>=n || nx>=m || ny<0 || nx<0) continue;
-                if (diff <= t) dp[i*100+j][ny*100+nx] = diff * diff;
-                else dp[i*100+j][ny*100+nx] = 1;
+                if (diff <= t) {
+                    if (a[i][j]<a[ny][nx]) dp[i*100+j][ny*100+nx] = diff * diff;
+                    else dp[i*100+j][ny*100+nx] = 1;
+                }
+
             }
         }
     }
 
-    
+    // 플로이드-워셜 조짐
+    // 최단시간이 최단경로이므로
+    // 주어진 시간동안 가장 높이 가야하므로
+    for (int k: v) {
+        for (int i: v) {
+            for (int j: v) {
+                dp[i][j] = min(dp[i][j], dp[i][k]+dp[k][j]);
+            }
+        }
+    }
+
+    for(int i: v){
+        if (d >= dp[0][i] + dp[i][0]) {
+            ret = max(ret, a[i/100][i%100]);
+        }
+    }
+
+    cout << ret << "\n";
+    return 0;
 }
+
+
+// 플로이드-워셜 문제
+// 2차원좌표를 1차원좌표로 바꿔 표현하기가 핵심
