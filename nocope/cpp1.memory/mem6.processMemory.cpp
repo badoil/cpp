@@ -13,13 +13,13 @@ int main()
   std::cout << "&sa:  " << (long)&sa << std::endl;
   std::cout << "&sb:  " << (long)&sb << std::endl;
 
-  int * hap = new int;
+  int * hap = new int;  // 힙메모리
   int * hbp = new int;
 
-  std::cout << "&hap: " << (long)&hap << std::endl;
+  std::cout << "&hap: " << (long)&hap << std::endl;   // 포인터 변수의 주소, 즉 스텍메모리의 주소
   std::cout << "&hbp: " << (long)&hbp << std::endl;
 
-  std::cout << "&ha:  " << (long)hap << std::endl;
+  std::cout << "&ha:  " << (long)hap << std::endl;    // 포인터 변수에 할당된 힙메모리의 주소
   std::cout << "&hb:  " << (long)hbp << std::endl;
 
   delete hap;
