@@ -44,10 +44,10 @@ int main() {
 	// 	cin >> s; 
 	// 	stack<char> stk;
 	// 	for(char a : s){
-	// 		if(stk.size() && stk.top() == a)stk.pop();
+	// 		if(stk.size() && stk.top() == a) stk.pop();
 	// 		else stk.push(a); 
 	// 	} 
-	// 	if(stk.size() == 0)ret++;
+	// 	if(stk.size() == 0) ret++;
 	// }
 	// cout << ret << "\n"; 
 }
