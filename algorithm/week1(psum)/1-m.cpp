@@ -1,3 +1,4 @@
+// *
 // https://www.acmicpc.net/source/share/1797670218184cc385194f46b1b967dd
 
 // 문제
