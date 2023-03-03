@@ -21,54 +21,55 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int b1, b2, a1, a2, a[104][104], visited[104][104], ny, nx;
+int m, n, k, b1, b2, a1, a2, a[104][104], ny, nx;
 int dy[4] = { -1, 0, 1, 0};
 int dx[4] = {0, 1, 0, -1};
 vector<int> v;
 
+
 int dfs(int y, int x) {
-    visited[y][x] = 1;
+    a[y][x] = 1;
     int cnt = 1;
     for (int i=0; i<4; i++) {
-        ny = y + dy[i];
-        nx = x + dx[i];
-        if (ny<0 || ny>=100 || nx<0 || nx>=100) continue;
-        if (visited[ny][nx]==0 && a[ny][nx]==0) {
-            cnt += dfs(ny, nx);
-        }
+        int ny = y + dy[i];
+        int nx = x + dx[i];
+        if (ny<0 || nx<0 || ny>=m || nx>=n || a[ny][nx]==1) continue;
+        cnt += dfs(ny, nx);
     }
     return cnt;
 }
 
-int main() {
+main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
-    cin >> b1 >> b2 >> a1 >> a2;        // 사각형을 지정해준다
-    for(int i=b1; i<b2; i++) {
-        for(int j=a1; j<a2; i++) {
-            a[i][j] = 1;
+    cin >> m >> n >> k;
+    for (int i=0; i<k; i++) {
+        cin >> a1 >> b1 >> a2 >> b2;
+        for (int j=a1; j<a2; j++) {
+            for (int k=b1; k<b2; k++) {
+                a[j][k] = 1;
+            }
         }
     }
-    
-    for(int i=0; i<104; i++) {
-        for(int j=0; j<104; j++) {
-            if(a[i][j]==0 && visited[i][j]==0) {
+
+    for (int i=0; i<m; i++) {
+        for (int j=0; j<n; j++) {
+            if (a[i][j] != 1) {
                 v.push_back(dfs(i, j));
             }
         }
     }
 
     cout << v.size() << "\n";
-    
     sort(v.begin(), v.end());
-    for(int a: v) {
-        cout << a << " ";
+    for (int i=0; i<v.size(); i++) {
+        cout << v[i] << " ";
     }
     return 0;
-    
 }
+
 
 
 // 지정한 영역외의 connected component의 사각형 갯수를 구하는 문제, 즉 dfs 문제
