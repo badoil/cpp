@@ -41,6 +41,7 @@ int main() {
             cin >> a[i][j];
             if(a[i][j]=='F') {
                 fireCheck[i][j] = 1;
+                q.push(make_pair(i, j));
             } else if (a[i][j] == 'J') {
                 py = i;
                 px = j;
