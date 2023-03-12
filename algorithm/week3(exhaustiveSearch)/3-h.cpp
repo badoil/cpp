@@ -43,10 +43,10 @@ int main() {
     }
 
     for(int i=k; i!=n; i=_prev[i]) {      // 자취를 거꾸로 따라 가면서 포문 돈다
-        ret.push_back(_prev[i]);
+        ret.push_back(i);
     }
+    ret.push_back(n));
     reverse(ret.begin(), ret.end());
-    ret.push_back(k);
 
     cout << visited[k]-1 << "\n";
     for (int i=0; i<ret.size(); i++) {
