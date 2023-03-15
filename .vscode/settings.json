@@ -66,7 +66,14 @@
     "thread": "cpp",
     "regex": "cpp",
     "map": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "__tree": "cpp",
+    "list": "cpp",
+    "random": "cpp",
+    "set": "cpp",
+    "stack": "cpp",
+    "unordered_set": "cpp",
+    "valarray": "cpp"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
