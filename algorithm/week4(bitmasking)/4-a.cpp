@@ -63,20 +63,20 @@ int main() {
         cin >> a[i].mp >> a[i].mf >> a[i].ms >> a[i].mv >> a[i].cost;
     }
 
-    for (int i=0; i<(1 << n) ; i++) {
+    for (int i=0; i<(1 << n) ; i++) {   // 모든 경우의 수에 대하여
         b = c = d = e = sum = 0;
         vector<int> v;
         for (int j=0; j<n; j++) {
-            if (i & (1 << j)) {
-                v.push_back(j+1);       // 재료 번호가 1부터라서 +1해줌
-                b += a[j].mp;
+            if (i & (1 << j)) {         // j번째 해당 재료를 선택했을때
+                v.push_back(j+1);       // 재료 번호가 1부터라서 +1해줌, 그 재료 푸시
+                b += a[j].mp;           // 그 재료의 각 영양소들 누적
                 c += a[j].mf;
                 d += a[j].ms;
                 e += a[j].mv;
                 sum += a[j].cost;
             }
         }
-        if (mp <= b && mf <= c && ms <= d && mv <= e) {
+        if (mp <= b && mf <= c && ms <= d && mv <= e) { // 각 영양소 최소양 넘으면
             if (ret >= sum) {                           // 같은 sum 값의 조합이 여러개 있을 수 있음, 그래서 map<int, vector<vector<int>>> 인 것임
                 ret = sum;
                 m_pro[ret].push_back(v);                // 재료 번호 배열
