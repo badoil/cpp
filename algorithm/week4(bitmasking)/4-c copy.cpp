@@ -31,66 +31,59 @@
 // 1 ≤ 구역의 인구 수 ≤ 100
 
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 const int INF = 987654321;
-int n, m, temp, a[11], comp[11], visited[11], ret=INF;
-vector<int> adj[11];
+int n, m, a[14], gari[14], visited[14], ret = INF, idx1, idx2;
+vector<int> adj[14];
 
-
-pair<int, int> dfs(int here, int value) {
-    visited[here] = 1;
-    pair<int, int> ret = {1, a[here]};
-    for(int there: adj[here]) {
-        if (visited[there]) continue;
-        if (comp[there] != value) continue;
-        pair<int, int> _temp = dfs(there, value);
-        ret.first += _temp.first;
-        ret.second += _temp.second;
+pair<int, int> dfs(int idx, int val) {
+    visited[idx] = 1;
+    for (int next: adj[idx]) {
+        if (visited[next] == 1) continue;
+        if (gari[next] != val) continue;
+        
     }
-    return ret;
 }
 
-int main() {
+int main () {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
 
     cin >> n;
-    for(int i=1; i<=n; i++) {
+    for (int i=1; i<=n; i++) {
         cin >> a[i];
     }
 
-    for(int i=1; i<=n; i++) {
+    for (int i=1; i<=n; i++) {
         cin >> m;
-        for(int j=0; j<m; j++) {
+        int temp;
+        for (int j=1; j<=m; j++) {
             cin >> temp;
             adj[i].push_back(temp);
-            adj[temp].push_back(i);
+            adj[temp].push_back(i);   
         }
     }
 
-    for(int i=0; i<=(1<<n)-1; i++) {        // 모든 경우의 수를 비트마스킹으로 나타냄
-        fill(comp, comp+11, 0);
-        fill(visited, visited+11, 0);
-        int idx1;
-        int idx2;
-        for(int j=0; j<n; j++) {
-            if (i & (1<<j)) {              // 조건을 만족하면 1로 값 할당, 비트가 켜있는 구역 인덱스 체크
-                comp[j+1] = 1;             // 그 구역에 1을 할당
-                idx1 = j + 1;              // dfs 시작할 인덱스
-            } else idx2 = j + 1;
+    for (int i=1; i<(1<<n)-1; i++) {
+        fill(gari, gari+14, 0);
+        fill(visited, visited+14, 0);
+        for( int j=1; j<=n; j++) {
+            if (i & (1<<j)) {
+                gari[j] = 1;
+                idx1 = j;
+            } else {
+                idx2 = j;
+            }
         }
-        pair<int, int> ret1 = dfs(idx1, 1);     // 인덱스와 밸류를 달리하면 dfs 두번 호출이 포인트        
-        pair<int, int> ret2 = dfs(idx2, 0);
         
-        if (ret1.first + ret2.first == n) ret = min(ret, abs(ret1.second - ret2.second));       // 여러가지 connected component 경우의 수를 만들텐데, 그중 딱 두개 만드는 경우 찾기
+        
     }
-
-    cout << (ret==INF? -1 : ret) << "\n";
-    return 0;
 }
+
+
 
 
 // 이 문제는 결국 connected component 구하는 문제
