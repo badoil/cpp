@@ -13,7 +13,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int r, c, a[24][24], ret, ny, nx;
+int r, c, ret, ny, nx;
+char a[21][21];
 int dy[4] = { -1, 0, 1, 0};
 int dx[4] = { 0, 1, 0, -1};
 
@@ -27,7 +28,7 @@ void go (int y, int x, int num, int cnt) {
         if (ny<0 || nx <0 || ny>=r || nx>=c) continue;
         int next = (1 << (int) (a[ny][nx] - 'A'));
         if (num & next == 0) {                               // 두 수의 and 연산이 0이란 뜻은 두 수가 겹치지 않는다는 뜻, 즉 next 가 새로운 수
-            go(ny, nx, num | next, cnt+1);                   // num | next 합쳐서 넘기면 next 수도 저장되는것
+            go(ny, nx, num | next, cnt+1);                   // num | next 합쳐서 넘기면 next 수도 저장되는것, 
         }
 
     }
@@ -44,7 +45,7 @@ int main() {
         }
     }
 
-    go(0, 0, 1 << (int) (a[0][0] - 'A'), 1);
+    go(0, 0, 1 << (int) (a[0][0] - 'A'), 1);        //  문자를 숫자로 변환
     
     cout << ret << "\n";
 
