@@ -63,15 +63,15 @@ int main() {
     }
 
     for(int i=1; i<=n; i++) {
-        cin >> m;
-        for(int j=0; j<m; j++) {
+        cin >> m;                       // 인접한 구역의 수
+        for(int j=0; j<m; j++) {        // 인접한 구역이 어딘지 입력
             cin >> temp;
             adj[i].push_back(temp);
             adj[temp].push_back(i);
         }
     }
 
-    for(int i=0; i<=(1<<n)-1; i++) {        // 모든 경우의 수를 비트마스킹으로 나타냄
+    for(int i=0; i<=(1<<n)-1; i++) {        // 모든 경우의 수를 비트마스킹으로 나타냄, 
         fill(comp, comp+11, 0);
         fill(visited, visited+11, 0);
         int idx1;
@@ -92,6 +92,12 @@ int main() {
     return 0;
 }
 
+
+// 여러 구역을 두개의 선거구로 나누는 문제
+// 두개니까 0 또는 1로 비트마스킹
+// 모든 구역에 0 또는 1로 할당한 모든 경우의 수에서
+// 모든 구역을 정확하게 두 선거구로 묶은 경우를 탐색 (즉 두개의 connected component로 나눈 경우)
+// 두 선거구로 묶은 경우들 중에서 인구차이가 최소인 값을 출력
 
 // 이 문제는 결국 connected component 구하는 문제
 // 지역구를 2개로 나누는 것이기 때문에 이를 2진법으로 생각할 수 있는것
