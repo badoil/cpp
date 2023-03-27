@@ -1,3 +1,4 @@
+// *
 // https://www.acmicpc.net/problem/14391
 
 // 문제
@@ -55,7 +56,7 @@ int main () {
             int cur = 0;
 
             for(int j=0; j<n; j++) {
-                int k = i * m + i;
+                int k = i * m + j;
                 if ((s & (1<<k)) != 0) {
                     cur = cur * 10 + a[i][j];
                 } else {
