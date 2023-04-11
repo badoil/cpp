@@ -13,9 +13,31 @@
 // 서로 볼 수 있는 쌍의 수를 출력한다.
 
 
+#include <bits/stdc++.h>
+using namespace std;
 
+typedef long long ll;  
+ll n, ret, temp;
+stack<pair<int, int>> stk;
 
+int main() {
+    cin >> n;
+    for(int i=0; i<n; i++) {
+        cin >> temp;
+        int cnt = 1;
+        while(stk.size() && stk.top().first <= temp) {
+            ret += stk.top().second;
+            if (stk.top().first == temp) cnt = stk.top().second + 1;
+            else cnt = 1;
+            stk.pop();
+        }
+        if (stk.size()) ret++;
+        stk.push({temp, cnt});
+    }
 
+    cout << ret << "\n";
+    return 0;
+}
 
 
 
@@ -23,3 +45,6 @@
 // 2. 내림차순은 팝할 필요도 없이 그냥 ret에 1씩 더해줌
 // 3. 숫자는 long long 으로 해야함  -> n이 50만까지이므로 얘들이 모두 같은 수이면, 등차수열 n(n+1), 즉 대략 50만 * 50만 이므로 long long 으로 처리해야함
 // 4. 키가 같은 애들이 연속으로 나올때 처리
+
+// 짝의 수를 구하는 문제
+// 짝하면 스택 생각해보기

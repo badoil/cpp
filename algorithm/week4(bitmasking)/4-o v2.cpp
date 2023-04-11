@@ -25,30 +25,38 @@
 // (()))()((()))(     
 
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int n, ret;
+int n, d[200004], ret;
 string s;
 stack<int> stk;
 
 int main () {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 
     cin >> n >> s;
-    stk.push(-1);             // 인덱스가 0부터 시작되기 때문에 갯수를 올바르게 세기 위해 처음에 -1을 넣어줌
-    for(int i=0; i<n; i++) {
+    for (int i=0; i<n; i++) {
         if (s[i] == '(') stk.push(i);
-        if (s[i] == ')') {
+        else if (stk.size()) {
+            d[i] = d[stk.top()] = 1;        // 괄호 문자열 모양대로 1을 넣어줌
             stk.pop();
-            if(!stk.empty()) {                  // stk이 비어있지 않다는 것은 괄호가 아직 안끝났다는 의미
-                ret = max(ret, i-stk.top());    // 괄호의 길이를 구해서 이를 맥스 갱신 해줌
-            } else stk.push(i);             // 새로운 괄호가 다시 시작될 수 있으므로
         }
     }
 
+    int cnt = 0;
+    for (int i=0; i<n; i++) {
+        if (d[i]) {
+            cnt++;
+            ret = max(ret, cnt);
+        }
+        else cnt = 0;
+    }
+
     cout << ret << "\n";
-    return 0;
+    return 0
 }
 
 
