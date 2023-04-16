@@ -36,11 +36,11 @@ int main() {
     for(int i=0; i<n; i++) {
         if (a[i].second <= idx) continue;       // 이미 있는 널빤지가 이미 물웅덩이를 덮고 있는 경우
         if (a[i].first > idx) {                 // 이미 있는 널빤지가 새 물웅덩이를 못 덭는 경우
-            b = ((a[i].second - a[i].first)/l) + ((a[i].second - a[i].first) % l ? 1 : 0);
+            b = ((a[i].second - a[i].first)/l) + ((a[i].second - a[i].first) % l ? 1 : 0);  // 널판지 갯수
             ret += b;
             idx = a[i].first + b*l;
         } else {                                // 이미 있는 널빤지가 새 물웅덩이를 부분적으로 덮는 경우
-            b = ((a[i].second - idx)/l) + ((a[i].second - idx) % l ? 1 : 0);
+            b = ((a[i].second - idx)/l) + ((a[i].second - idx) % l ? 1 : 0);    // 널판지 갯수
             ret += b;
             idx = idx + b*l;
         }
