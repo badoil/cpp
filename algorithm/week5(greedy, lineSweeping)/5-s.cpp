@@ -1,5 +1,6 @@
 // 문제
-// N개의 수로 이루어진 수열 A1, A2, ..., AN이 주어진다. 또, 수와 수 사이에 끼워넣을 수 있는 N-1개의 연산자가 주어진다. 연산자는 덧셈(+), 뺄셈(-), 곱셈(×), 나눗셈(÷)으로만 이루어져 있다.
+// N개의 수로 이루어진 수열 A1, A2, ..., AN이 주어진다. 또, 수와 수 사이에 끼워넣을 수 있는 N-1개의 연산자가 주어진다. 
+// 연산자는 덧셈(+), 뺄셈(-), 곱셈(×), 나눗셈(÷)으로만 이루어져 있다.
 // 우리는 수와 수 사이에 연산자를 하나씩 넣어서, 수식을 하나 만들 수 있다. 이때, 주어진 수의 순서를 바꾸면 안 된다.
 // 예를 들어, 6개의 수로 이루어진 수열이 1, 2, 3, 4, 5, 6이고, 주어진 연산자가 덧셈(+) 2개, 뺄셈(-) 1개, 곱셈(×) 1개, 나눗셈(÷) 1개인 경우에는 
 // 총 60가지의 식을 만들 수 있다. 예를 들어, 아래와 같은 식을 만들 수 있다.
@@ -41,9 +42,9 @@ void go(int idx, int cur, int plus, int minus, int multiply, int division) {
         return;
     }
 
-    if (plus) go(idx+1, cur+a[idx+1], plus-1, minus, multiply, division);
-    if (minus) go(idx+1, cur-a[idx+1], plus, minus-1, multiply, division);
-    if (multiply) go(idx+1, cur*a[idx+1], plus, minus, multiply-1, division);
+    if (plus) go(idx+1, cur+a[idx+1], plus-1, minus, multiply, division);   // + 연산이 남아있으면 진행
+    if (minus) go(idx+1, cur-a[idx+1], plus, minus-1, multiply, division);  // - 연산이 남아있으면 진행
+    if (multiply) go(idx+1, cur*a[idx+1], plus, minus, multiply-1, division); // 이하 동일
     if (division) go(idx+1, cur/a[idx+1], plus, minus, multiply, division-1);
     return;
 }
@@ -67,3 +68,5 @@ int main() {
 // 이 문제는 4개의 연사를 11개의 수 사이에 조합해서 최대, 최소 값 구하는 문제
 // 즉 4의 11제곱, 이 정도는 완탐가능
 // 재귀함수로 깔끔하게
+
+// go 함수는 매번 4개의 분기를 치면서 모든 경우의 수를 탐색
