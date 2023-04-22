@@ -30,8 +30,8 @@ int main () {
     sort(a, a+n);
     l = a[0].first; r = a[0].second;
 
-    for (int i=0; i<n; i++) {
-        if (a[i].first > l) {
+    for (int i=1; i<n; i++) {
+        if (a[i].first > r) {
             ret += r - l;
             l = a[i].first;
             r = a[i].second;
