@@ -22,7 +22,7 @@ ll n, m, a[100004], ret, mx;
 bool check(ll mid) {
 
     ll temp = mid;
-    int cnt = 0;
+    int cnt = 1;                // 시작이 1이기 때문에 포문 끝나고 mid 체크를 해서 cnt 올리는 것을 안함
     for (int i=0; i<n; i++) {
         if (mid >= a[i]) {
             mid -= a[i];
@@ -46,7 +46,7 @@ int main () {
     cin >> n >> m;
     for (int i=0; i<n; i++) {
         cin >> a[i];
-        mx = max(mx, a[i]);
+        mx = max(mx, a[i]);     // 포인트
     }
 
     int lo = 0, hi = mx;
