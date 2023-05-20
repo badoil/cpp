@@ -1,3 +1,4 @@
+// *
 // 문제
 // 형택이는 1부터 9까지의 숫자와, 구멍이 있는 직사각형 보드에서 재밌는 게임을 한다.
 
@@ -39,7 +40,7 @@ int go(int a, int b) {
     int &ret = dp[a][b];        // 메모이제이션
     if (ret) return ret;        // 저장된 값 있으면 그것을 리턴
     visited[a][b] = 1;          // 방문 처리
-    int value = (int)bb[a][b] - '0';
+    int value = (int)bb[a][b] - '0';    // 문자로 쓰여있는 숫자를 int로 전환
     for (int i=0; i<4; i++) {
         int ny = a + dy[i]*value;
         int nx = b + dx[i]*value;
