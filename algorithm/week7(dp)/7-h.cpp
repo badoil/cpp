@@ -17,12 +17,12 @@ int n, k, dp[100004], temp;
 int main() {
     scanf("%d %d", &n, &k);
 
-    dp[0] = 1;                  // 초기값 중요, 
+    dp[0] = 1;                  // 초기값 중요, 0원이 되는 방법은 1가지
     for (int i=0; i<n; i++) {
         scanf("%d", &temp);
         if(temp >= 10001) continue; 
         for (int j=temp; j<=k; j++) {
-            dp[j] += dp[j-temp];
+            dp[j] += dp[j-temp];        // 동전 temp원으로 만들 수 있는 경우의 수를 누적해 나감
         }
     }
     
@@ -34,3 +34,5 @@ int main() {
 // 바텀업
 // 기존의 dp[j] 에 dp[j-temp] j-temp를 temp원으로 만든 경우의 수를 더해서 
 // dp[j]를 누적해감
+
+// 7-g 문제와 차이는 동전의 개수가 최소가 되어야한다는 조건이 없다는 것
