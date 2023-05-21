@@ -24,7 +24,7 @@ ll go(int whole, int half) {
     if (whole==0 && half==0) return 1;                  // 노드의 끝에 왔으니, 이 가지를 한 가지의 경우로 보고 1을 리턴
     if (dp[whole][half] != 0) return dp[whole][half];   // 메모이제이션
     ll &ret = dp[whole][half];
-    if (whole > 0) ret += go(whole-1, half+1);  // 온전한 한알을 꺼내 먹는 경우, 
+    if (whole > 0) ret += go(whole-1, half+1);  // 온전한 한알을 꺼내 먹는 경우, 1개짜리는 줄고 1개를 쪼개서 반만먹고 다시 넣으니 반개짜리는 하나 증가
     if (half > 0) ret += go(whole, half-1);     // 반알을 꺼낸 경우
     return ret;       // 노드의 최 상단에서 모든 경우의 수가 종합될 것
 }
