@@ -23,7 +23,7 @@ int main () {
     cout.tie(NULL);
 
     cin >> n >> k;
-    fill(dp, dp+10004, INF);    // 최소값 구하는 문제기 때문에 최소값으로 초기화
+    fill(dp, dp+10004, INF);    // 최소값 구하는 문제기 때문에 최대값으로 초기화
     dp[0] = 0;                  // 초기값 설정해줘야 바텀업으로 갈 수 있음
     for (int i=0; i<n; i++) {
         cin >> temp;
