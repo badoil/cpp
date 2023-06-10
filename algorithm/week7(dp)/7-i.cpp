@@ -25,10 +25,10 @@ int n, m1, m2, dp[10004], c, p;
 int main () {
     while (1) {
         int n, m1, m2;
-        scanf("%d %d.%d", &n, m1, m2);
+        scanf("%d %d.%d", &n, &m1, &m2);    // 소수점 표현 방법, 입력을 0.0으로 받지만 실제는 두 정수를 받는것, 플롯이나 더블은 정수로 만들어라!
         if (n == 0) break;
         fill(dp, dp+10004, -1);
-        int money = m1*100 + m2;
+        int money = m1*100 + m2;            // 받은 두 정수를 하나의 정수로 합침
         for (int i=0; i<n; i++) {
             scanf("%d %d.%d", &c, m1, m2);
             p = m1*100 + m2;
