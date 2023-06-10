@@ -21,7 +21,7 @@
 using namespace std;
 
 int n, m, c, a[54][54], dp[54][54][54][54];
-const int mod = 1000007;
+const int mod = 1000007;                    
 
 int go(int y, int x, int cnt, int prev) {
     if (y>n || x>m) return 0;               // 맵 벗어났으므로 0 리턴
@@ -35,7 +35,7 @@ int go(int y, int x, int cnt, int prev) {
     if (ret != -1) return ret;      // 메모제이션
     ret = 0;    // 초기화
     if (a[y][x]==0) {   // 현 위치가 오락실 아닌 경우
-        ret = (go(y+1, x, cnt, prev) + go(y, x+1, cnt, prev)) % mod;            // 경로의 개수는 1,000,007로 나눈 나머지를 출력
+        ret = (go(y+1, x, cnt, prev) + go(y, x+1, cnt, prev)) % mod;            // 경로의 개수는 1,000,007로 나눈 나머지를 출력, 특별한 이유는 없고 출력 조건이 그러함
     } else if (a[y][x]>prev) {  // 현 위치가 오락실인 경우, 그리고 현재 오락실번호가 prev 보다 큰 경우, 즉 오락실 번호가 증가하는 순서대로 간 경우임
         ret = (go(y+1, x, cnt-1, a[y][x]) + go(y, x+1, cnt-1, a[y][x])) % mod;  // 현 위치가 오락실이므로 cnt-1 해주고, 현 위치인 a[y][x]를 prev로 넘김
     }
