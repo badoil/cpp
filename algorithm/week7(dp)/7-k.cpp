@@ -1,3 +1,4 @@
+// *
 // 문제
 // 세준이는 크기가 N*M인 직사각형 도시에 살고 있다. 또, 세준이의 집은 (1, 1)에 있고, 학원은 (N, M)에 있고, 오락실이 C개 있다.
 
@@ -26,7 +27,7 @@ int go(int y, int x, int cnt, int prev) {
     if (y>n || x>m) return 0;               // 맵 벗어났으므로 0 리턴
     if (y==n && x==m) {
         if (a[y][x]==0 && cnt==0) return 1; // 학원(n,m)에 도착했고, 오락실을 다 거쳐옴
-        if (a[y][x]>prev && cnt==1) return 1;   // 오락실이 (n,m)에 위치한 경우
+        if (a[y][x]>prev && cnt==1) return 1;   // 오락실이 학원과 같은 곳(n,m)에 위치한 경우
         return 0;
     }
     
@@ -35,7 +36,7 @@ int go(int y, int x, int cnt, int prev) {
     ret = 0;    // 초기화
     if (a[y][x]==0) {   // 현 위치가 오락실 아닌 경우
         ret = (go(y+1, x, cnt, prev) + go(y, x+1, cnt, prev)) % mod;            // 경로의 개수는 1,000,007로 나눈 나머지를 출력
-    } else if (a[y][x]>prev) {  // 현 위치가 오락실인 경우
+    } else if (a[y][x]>prev) {  // 현 위치가 오락실인 경우, 그리고 현재 오락실번호가 prev 보다 큰 경우, 즉 오락실 번호가 증가하는 순서대로 간 경우임
         ret = (go(y+1, x, cnt-1, a[y][x]) + go(y, x+1, cnt-1, a[y][x])) % mod;  // 현 위치가 오락실이므로 cnt-1 해주고, 현 위치인 a[y][x]를 prev로 넘김
     }
     return ret;
@@ -54,7 +55,7 @@ int main () {
     }
     
     memset(dp, -1, sizeof(dp));
-    for (int i=0; i<=c; i++) {
+    for (int i=1; i<=c; i++) {              //  오락실을 K번 방문해서 학원에서 도착하는 경로의 경우의 수
         cout << go(1, 1, i, 0) << " ";
     }
     return 0;
