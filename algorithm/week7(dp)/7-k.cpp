@@ -48,14 +48,14 @@ int main () {
     cout.tie(NULL);
 
     cin >> n >> m >> c;
-    for (int i=0; i<c; i++) {
+    for (int i=1; i<=c; i++) {
         int y, x;
         cin >> y >> x;
         a[y][x] = i;
     }
     
     memset(dp, -1, sizeof(dp));
-    for (int i=1; i<=c; i++) {              //  오락실을 K번 방문해서 학원에서 도착하는 경로의 경우의 수
+    for (int i=0; i<=c; i++) {              //  오락실을 K번 방문해서 학원에서 도착하는 경로의 경우의 수
         cout << go(1, 1, i, 0) << " ";
     }
     return 0;
