@@ -26,7 +26,7 @@ map<int, int> _map;
 
 bool check(int y, int x, int size) {
     if (y+size>n || x+size>n) return false;
-    for (int i=y; i<y+size; i++) {              // size 만큼 체크하기
+    for (int i=y; i<y+size; i++) {              // 색종이 size 만큼 체크하기
         for (int j=x; j<x+size; j++) {
             if (a[i][j] == 0) return false;
         }
@@ -53,8 +53,8 @@ void dfs(int y, int x, int cnt) {
         return;
     }
 
-    for (int i=5; i>=1; i--){       // 최소한의 색종이 수를 구해야하므로 큰 색종이이 5사이즘부터 시작
-        if (_map[i] == 5) continue; // 종류별로 5장씩 있으므로
+    for (int i=5; i>=1; i--){       // 최소한의 색종이 수를 구해야하므로 큰 색종이인 사이즈5 부터 시작
+        if (_map[i] == 5) continue; // 종류별로 5장씩 있기에, 더 사용할 색종이가 없으므로 다음으로 넘김
         if (check(y, x, i)) {       // 해당부분에 색종이 붙일 수 있는지 체크
             _map[i]++;
             draw(y, x, i, 0);
