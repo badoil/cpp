@@ -21,7 +21,7 @@ typedef long long ll;
 ll n, a[104], dp[104][24];
 
 ll go (int idx, int sum){
-    if (idx<0 || sum>20) return 0;
+    if (idx<0 || sum>20) return 0;      // 틀린 노드 가지는 더 이상 진행하지 않고 멈춤
     ll &ret = dp[idx][sum];
     if (ret) return dp[idx][sum];
     if (idx == n-2) {                   //마지막 리프노드에서 1또는 0이 리턴될 것임
@@ -50,3 +50,4 @@ int main() {
 // 마지막 리프노드에서 1또는 0이 리턴될 것임
 // 맞는 식은 계속 1을 가지고 올라감
 // 올바른 식만 맨 위에서 더해져서 그게 답임
+// 즉 sum이 20이 넘는 틀린 노드 가지는 더 이상 진행하지 않고 멈춤
