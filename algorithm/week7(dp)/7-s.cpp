@@ -40,10 +40,10 @@ int main () {
     for (int i=0; i<s.size()-1; i++) {
         if (s[i]==s[i+1]) dp[i][2] = 1;                         // 문자 두개가 같으면 펠린드롬
     }
-    for (int _s=3; _s<=s.size(); _s++) {
+    for (int _s=3; _s<=s.size(); _s++) {                        // _s는 문자열의 사이즈기때문에 문자열 사이즈 s.size()까지 순회
         for (int i=0; i<=s.size()-_s; i++) {
             if (s[i]==s[i+_s-1] && dp[i+1][_s-2]) dp[i][_s] = 1;        // 문제의 예시 중에 {A, BACAB, A} 이런 펠린드롬을 잡아내려면 i++ 해주면서 체크해야함
-        }
+        }                                                               // i+_s-1 해주는 이유는 _s는 사이즈라 인덱스에서 -1 해줌
     }
 
     fill(dp2, dp2+2504, INF);
