@@ -1,3 +1,4 @@
+// https://www.acmicpc.net/problem/2618
 // 문제
 // 어떤 도시의 중심가는 N개의 동서방향 도로와 N개의 남북방향 도로로 구성되어 있다.
 
@@ -36,9 +37,9 @@ int d (int a, int b) {
 }
 
 int totalDistance(int a, int b) {
-    if (a == w+1 || b == w+1) return 0;
+    if (a == w+1 || b == w+1) return 0;     // 두 경찰차 중 하나라도 마지막 사건 + 1 에 이르렀으면 다 해결한것이므로 리턴0
     if (dp[a][b]) return dp[a][b];
-    int next = max(a, b) + 1;
+    int next = max(a, b) + 1;               // 두 경찰차 중 하나가 현재 사건에 도착한 경우이고 이는 a와 b중에 큰 값이 나타내므로, 다음 사건 번호는 그 큰 값 + 1
     dp[a][b] = min(totalDistance(next, b)+d(a, next), totalDistance(a, next)+d(b, next));
     return dp[a][b];
 }
@@ -58,11 +59,11 @@ int main () {
     cout.tie(NULL);
 
     cin >> n >> w;
-    px[0] = 1, py[0] = 1;
-    px[1] = n, py[1] = n;
+    px[0] = 1, py[0] = 1;       // 0번은 경찰차1, 경찰차1의 초기위치 (1,1)
+    px[1] = n, py[1] = n;       // 1번은 경찰차2, 경찰차2의 초기위치 (n,n)
     for (int i=2; i<w+2; i++) {
         cin >> y >> x;
-        py[i] = y, px[i] = x;       // 사건을 인덱스로 저장
+        py[i] = y, px[i] = x;       // 사건을 인덱스로 저장, i번 사건의 위치는 (y,x)
     }
 
     cout << totalDistance(0, 1) << "\n";
