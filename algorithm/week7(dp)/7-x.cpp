@@ -27,7 +27,7 @@ int go(int bagNumber, int diamondList, int capa) {
     for (int i=0; i<n; i++) {                               // 현재 bagNumber에 다이아몬드를 넣거나
         bool isDiamond = (diamondList & (1<<i));
         if (!isDiamond && capa-a[i]>=0) {
-            ret = max(ret, go(bagNumber, diamondList|(1<<i), capa-a[i])+1);
+            ret = max(ret, go(bagNumber, diamondList|(1<<i), capa-a[i])+1); // 가방에 다이아몬드 넣었으므로 +1
         } 
     }
     return ret;
