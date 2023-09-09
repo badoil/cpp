@@ -1,3 +1,4 @@
+// *
 // 문제
 // 욱제는 세계적인 인기를 자랑하는 월클(World Class) 스타이다! 영선이는 욱제TV 구독자 5조5억명 달성 기념 파티를 준비하고 있다. 
 // 영선이는 욱제를 아는 수많은 사람들에게 초대장을 돌렸는데, 초대장을 받은 모든 사람들이 자신이 언제 와서 언제 떠날 것인지 답변을 줬다.
@@ -26,7 +27,7 @@ int n, m, k, t, dp[304][304], a, b, cnt[304];
 vector<pair<int, int>> v;
 
 int go(int idx, int friends, int prev) {        // prev 는 이전 차수에 필요했던 영선이 친구 수
-    if (idx == v.size()) return 0;
+    if (idx == v.size()) return 0;              // 이 go 함수는 v 벡터 사이즈만큼만 반복, idx는 결국 v벡터의 idx
     if (dp[idx][friends]) return dp[idx][friends];
     
     int cost = max(0, t-v[idx].second);     // 최소인원보다 현재 인원이 적으면 그 수가 이번 차수에 필요한 친구 수
@@ -46,15 +47,15 @@ int main () {
     for (int i=0; i<m; i++) {
         cin >> a >> b;
         for (int j=a; j<b; j++) {
-            cnt[j] = min(t, ++cnt[j]);
+            cnt[j] = min(t, ++cnt[j]);  //  cnt[j] j시에 있는 사람수, min(t, )을 걸면 파티장에 있어야하는 최소한의 인원수 t를 초과할 수 없음, 밑에서 체크를 위해 필요 
         }
     }
 
     int temp = cnt[1];
     int interval = 1;
     for (int i=2; i<=n; i++) {              // dp를 위해서 벡터 v를 미리 만들어둠
-        if (temp != cnt[i]) {
-            v.push_back({interval, temp});
+        if (temp != cnt[i]) {               // 위에서 cnt[j] = min(t, ++cnt[j]) 한것은 여기를 위함, 즉 최소인원이 안된다는 뜻
+            v.push_back({interval, temp});  // 현재까지의 시간 interval을 저장해주고, 현재 인원수를 같이 저장, 이 인원수를 채우면 욱제가 머무는 시간인 interval이 늘어나는것
             interval = 0;
             temp = cnt[i];
         }
@@ -65,6 +66,10 @@ int main () {
     return 0;
 }
 
+// 핵심은 v벡터를 만드는것
+// 현재까지의 시간 interval과 최소인원이 안되는 현재 인원수를 같이 저장
+// 이러한 pair가 저장되있기 때문에 얘들을 순회하면서 현재인원을 최소 인원만큼 투입시키면서 
+// 최대가 되는 interval을 찾는것
 
 // dp[idx][friends], 현재 인덱스idx에 가용한 친구수friends에 해당하는 파티 시간
 // 이 디피를 걸기 위해서 v벡터를 미리 세팅해야함
