@@ -44,7 +44,7 @@ int main () {
     cout.tie(NULL);
 
     cin >> n >> m >> k >> t;
-    for (int i=0; i<m; i++) {
+    for (int i=0; i<n; i++) {
         cin >> a >> b;
         for (int j=a; j<b; j++) {
             cnt[j] = min(t, ++cnt[j]);  //  cnt[j] j시에 있는 사람수, min(t, )을 걸면 파티장에 있어야하는 최소한의 인원수 t를 초과할 수 없음, 밑에서 체크를 위해 필요 
