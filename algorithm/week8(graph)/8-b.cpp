@@ -45,7 +45,7 @@ int rpg(int STR, int INT) {
     }
 
     for (int p=1; p<=ptr; p++) {            // 포인트 분배
-        int nextSTR = min(1000, STR+p);
+        int nextSTR = min(1000, STR+p);     // 1,000보다 작거나 같은 자연수
         int nextINT = min(1000, INT+ptr-p);
         ret = max(ret, rpg(nextSTR, nextINT));  // 나눈 포인트의 모든 경우에 대해서 rpg 재귀호출
     }
@@ -68,6 +68,7 @@ int main () {
 
 
 // dp + 완탐 문제
+// dp[STR][INT], 현재 힘과 지력으로 깬 퀘스트 갯수
 
 // 로직은 다음과 같다
 // 퀘스트를 깰수 있는지 체크하고, 깬다면 방문체크, 깬 퀘스트 인덱스 저장
