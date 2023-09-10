@@ -26,7 +26,7 @@ using namespace std;
 int n, m, k, t, dp[304][304], a, b, cnt[304];
 vector<pair<int, int>> v;
 
-int go(int idx, int friends, int prev) {        // prev 는 이전 차수에 필요했던 영선이 친구 수
+int go(int idx, int friends, int prev) {        // prev 는 이전 차수에 필요했던 영선이 친구 수, friends 는 현재 가용한 친구 수
     if (idx == v.size()) return 0;              // 이 go 함수는 v 벡터 사이즈만큼만 반복, idx는 결국 v벡터의 idx
     if (dp[idx][friends]) return dp[idx][friends];
     
@@ -51,7 +51,7 @@ int main () {
         }
     }
 
-    int temp = cnt[1];
+    int temp = cnt[1];                      // 파티가 시작됐다. 즉 인원수가 t라는 뜻
     int interval = 1;
     for (int i=2; i<=n; i++) {              // dp를 위해서 벡터 v를 미리 만들어둠
         if (temp != cnt[i]) {               // 위에서 cnt[j] = min(t, ++cnt[j]) 한것은 여기를 위함, 즉 최소인원이 안된다는 뜻
@@ -67,6 +67,7 @@ int main () {
 }
 
 // 핵심은 v벡터를 만드는것
+// v벡터 요소 {interval, temp} 의 의미는 t-temp 명을 투입하면 interval 시간을 욱제가 머무른다는 뜻
 // 현재까지의 시간 interval과 최소인원이 안되는 현재 인원수를 같이 저장
 // 이러한 pair가 저장되있기 때문에 얘들을 순회하면서 현재인원을 최소 인원만큼 투입시키면서 
 // 최대가 되는 interval을 찾는것
