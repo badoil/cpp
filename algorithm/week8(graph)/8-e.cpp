@@ -27,7 +27,7 @@ int n, m, dp[44], a[44], temp;
 
 int go(int seatNum) {
     if (seatNum >= n) return 1;     // 마지막 노드에 이르면 1을 리턴, 노드들을 거쳐 끝까지 왔으면 그 노드 번호들이 하나의 좌석 배열 케이스
-    if (a[seatNum]) go(seatNum+1);
+    if (a[seatNum]) go(seatNum+1);  // vip 석이면 다음으로 넘어가기
     if (dp[seatNum] != -1) return dp[seatNum];
     
     int &ret = dp[seatNum];
@@ -57,3 +57,10 @@ int main () {
 
 // dp[idx+2] 옆 좌석과 바꾼 경우와 dp[idx+1] 안바꾼 경우로 나눠서 디피 진행 
 // 모든 좌석 배열 경우의 수를 디피로 구하는 것
+
+// 왜 dp[idx+2] 가 좌석을 바꾼것이라는 의미인가가 중요함
+// 좌석을 안바꾼것은 idx+1 이렇게 +1 해서 진행으로 치고
+// 좌석을 바꾼것은 idx+2 이렇게 +2 해서 진행한 것으로 치면
+// 다음 좌석이 vip가 아닐때 두개씩 분기하는 경우의 수를 나타내기 때문
+// 두개씩 분기하는 경우의 수를 나타내는 것이 주용하기에,
+// 그것을 표현해주는 +2, +1이 되는 것임
