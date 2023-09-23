@@ -24,7 +24,7 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> 
 int main () {
     scanf("%d %d %d", &V, &E, &K);
     fill(dist, dist+20004, INF);
-    for (int i=1; i<=V; i++) {
+    for (int i=1; i<=E; i++) {
         scanf("%d %d %d", &u, &v, &w);
         adj[u].push_back(make_pair(w, v));
     }
