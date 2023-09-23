@@ -36,7 +36,7 @@ int main () {
         int here_dist = pq.top().first;
         pq.pop();
 
-        if(dist[here] != here_dist) continue;
+        if(dist[here] != here_dist) continue;   // 위에서 dist를 INF로 초기화시켰기에, 이 둘이 다르다는것은 아직 갱신 안됨을 의미함 그래서 continue
         for (pair<int, int> there: adj[here]) {
             int _there = there.second;
             int _there_dist = there.first;
