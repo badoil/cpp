@@ -34,7 +34,7 @@ int go(int idx, int x, int y, int z, int flag) {
     ret = INF;  // 최소값이므로 최대값 설정해 놓음
     int _flag = flag ? 1 : -1;
     for (int i=1; i<=3; i++) {  // 최대 3칸 이동 + 최대 세개의 디스크 변경 가능 
-        ret = min(ret, go(idx, _mod(x+i*_flag), y, z, 1)+1);
+        ret = min(ret, go(idx, _mod(x+i*_flag), y, z, 1)+1);                                // +1은 자물쇠 번호를 돌린 횟수
         ret = min(ret, go(idx, _mod(x+i*_flag), _mod(y+i*_flag), z, 1)+1);
         ret = min(ret, go(idx, _mod(x+i*_flag), _mod(y+i*_flag), _mod(z+i*_flag), 1)+1);
     }
