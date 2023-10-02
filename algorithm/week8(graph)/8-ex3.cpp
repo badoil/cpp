@@ -57,7 +57,7 @@ int main() {
         } else {
             int t3, t2;
             scanf("%d %d", &t2, &t3);
-            printf("%lld\n", sum(tree, t3) - sum(tree, t2));
+            printf("%lld\n", sum(tree, t3) - sum(tree, t2-1));
         }
     }
 
