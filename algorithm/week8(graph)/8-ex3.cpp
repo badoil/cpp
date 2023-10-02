@@ -49,12 +49,12 @@ int main() {
     m += k;
     while(m--) {
         scanf("%d", &t1);
-        if (t1 == 1) {
+        if (t1 == 1) {                      // t1이 1이면 해당 노드의 수를 t2에서 t4로 바꿈
             scanf("%d %lld", &t2, &t4);
             long long diff = t4 - a[t2];
             a[t2] = t4;
             update(tree, t2, diff);
-        } else {
+        } else {                            // 그외의 경우에는 구간합을 구함
             int t3, t2;
             scanf("%d %d", &t2, &t3);
             printf("%lld\n", sum(tree, t3) - sum(tree, t2-1));
