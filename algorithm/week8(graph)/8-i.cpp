@@ -16,7 +16,7 @@ using namespace std;
 #define ll long long
 int n, value;
 ll ret = 1, mod = 1e9 + 7;
-vector<ll> treeCnt(maxN, 0), treeSum(maxN, 0);
+vector<ll> treeCnt(maxN, 0), treeSum(maxN, 0);      // maxN 크기만큼 0으로 초기화
 
 ll _sum(vector<ll> &tree, int a) {
     int sum = 0;
@@ -30,7 +30,7 @@ ll _sum(vector<ll> &tree, int a) {
 
 ll sum(vector<ll> &tree, int a, int b) {
     if (a < b) return 0;
-    return (_sum(tree, a) - _sum(tree, b-1));
+    return (_sum(tree, b) - _sum(tree, a-1));
 }
 
 void update(vector<ll> &tree, int idx, ll diff) {
@@ -51,13 +51,13 @@ int main () {
     for (int i=1; i<=n; i++) {
         if (i != 1) {
             cin >> value; value++;
-            int left = sum(treeCnt, value-1, 1) * value - sum(treeSum, value-1, 1);         // 나무를 왼쪽 -> 오른쪽으로 심기
+            int left = sum(treeCnt, value-1, 1) * value - sum(treeSum, value-1, 1);         // 나무를 왼쪽 -> 오른쪽으로 심기, 
             int right = sum(treeSum, value+1, maxN) - sum(treeCnt, value+1, maxN) * value;  // 나무를 다시 왼쪽으로 가서 심을때 있기에
             ret *= (left+right) % mod;
             ret %= mod;
         }
-        update(treeCnt, value, 1);
-        update(treeSum, value, value);      // value가 tree[i]의 인덱스와 값, 두 역할 다 함
+        update(treeCnt, value, 1);          // value 인덱스에 나무를 심었으면 영향을 받는 모든 펜윅트리 노드에 나무의 갯수 1씩 추가해야함 
+        update(treeSum, value, value);      // 마찬가지로 영향을 받는 모든 펜윅트리 노드에 비용 value를 추가해야함, value가 tree[i]의 인덱스와 값, 두 역할 다 함
     }
     cout << ret << "\n";
 }
@@ -67,3 +67,4 @@ int main () {
 // 현재나무의 value에 현재나무 전까지 심은 나무의 갯수를 곱하고
 // 현재나무 전까지 심은 나무들의 value 들의 합을 빼면 
 // 현재 나무에서 이전 각 나무들과의 거리를 더한 값, 즉 현재 나무를 심는 비용이 나옴
+
