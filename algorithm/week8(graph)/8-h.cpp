@@ -35,7 +35,7 @@ int main () {
         f[i] = f[i-1] + f[i-2] + 1;
     }
 
-    for (int i=maxN; i<=2; i--) {           // 이게 포인트
+    for (int i=maxN; i>=2; i--) {           // 이게 포인트
         if (m >= f[i]) m -= (f[i] + 1);     // m이 f[i] 보다 크면 빼버리고 이를 반복하면 m 이 12 이하로 만들어짐
     }
     
