@@ -64,7 +64,7 @@ int main () {
     for (int i=1; i<=m; i++) {
         int w;
         scanf("%d", &w);
-        if (w) {     // w = 1인 경우는 (x1, y1)부터 (x2, y2)의 합을 구해 출력하는 연산
+        if (w) {     // w = 1인 경우는 (y1, x1)부터 (y2, x2)의 합을 구해 출력하는 연산
             int y1, x1, y2, x2;
             scanf("%d %d %d %d", &y1, &x1, &y2, &x2);
             printf("%d", sum(y2, x2) - sum(y1-1, x2) - sum(y2, x1-1) + sum(y1-1, x1-1));
