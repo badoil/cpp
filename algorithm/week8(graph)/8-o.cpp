@@ -30,10 +30,10 @@ int n, m, a, b, d, ret, dist_fox[4004], dist_wolf[4004][2];
 vector<PI> adj[4004];
 
 void djkstra () {
-    fill(dist_foxt, dist_foxt + 4004, INF);
+    fill(dist_fox, dist_fox + 4004, INF);
     priority_queue<PI, vector<PI>, greater<PI>> pq;
 
-    dist_foxt[1] = 0;
+    dist_fox[1] = 0;
     pq.push(make_pair(0, 1));
     while(pq.size()) {
         int d = pq.top().first;
