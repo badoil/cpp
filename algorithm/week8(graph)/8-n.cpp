@@ -49,7 +49,7 @@ void djstra() {
 
 void eraseEdges() {
     queue<int> q;
-    q.push(d);      // 목적지 e를 넣어줌, 즉 목적지에서 시작점으로 거꾸로 가면서 최단경로를 -1로 표시해주기 위함
+    q.push(d);      // 목적지 d를 넣어줌, 즉 목적지에서 시작점으로 거꾸로 가면서 최단경로를 -1로 표시해주기 위함
     while(q.size()) {
         int a = q.front();
         q.pop();
