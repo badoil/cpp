@@ -51,11 +51,11 @@ void eraseEdges() {
     queue<int> q;
     q.push(d);      // 목적지 d를 넣어줌, 즉 목적지에서 시작점으로 거꾸로 가면서 최단경로를 -1로 표시해주기 위함
     while(q.size()) {
-        int a = q.front();
+        int c = q.front();
         q.pop();
         for (int i=0; i<n; i++) {
-            if (dist[a] == dist[i] + a[i][a] && a[i][a] != -1) {
-                a[i][a] = -1;       // 최단경로 -1로 표시
+            if (dist[c] == dist[i] + a[i][c] && a[i][c] != -1) {
+                a[i][c] = -1;       // 최단경로 -1로 표시
                 q.push(i);
             }
         }
