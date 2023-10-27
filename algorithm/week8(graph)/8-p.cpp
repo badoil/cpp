@@ -37,7 +37,7 @@ int main() {
         scanf("%d %d %d", &a, &b, &c);
         adj[a].push_back(make_pair(b, c));
     }
-    for (int i=0; i<m; i++) scanf("%lld", &cost[i]);
+    for (int i=0; i<n; i++) scanf("%lld", &cost[i]);
 
     fill(dist, dist+104, -INF);
     dist[s] = cost[s];
