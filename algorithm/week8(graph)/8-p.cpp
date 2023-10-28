@@ -40,7 +40,7 @@ int main() {
     for (int i=0; i<n; i++) scanf("%lld", &cost[i]);
 
     fill(dist, dist+104, -INF);
-    dist[s] = cost[s];
+    dist[s] = cost[s];                  // 도시를 이동하면서 누적된 비용을 dist로 놓음
     for (int i=0; i<n; i++) {
         for (int here=0; here<n; here++) {
             for (pair<int, int> there: adj[here]) {
@@ -48,7 +48,7 @@ int main() {
                 int _cost = adj[here].second;       // 교통비
                 if (dist[_there]] != -INF && dist[here] + cost[_there] - _cost > dist[_there]) {
                     dist[_there] = dist[here] + cost[_there] - _cost;
-                    if (i == n-1) q.push(here);     // 음의 싸이클 판별
+                    if (i == n-1) q.push(here);     // 마지막 인덱스에서 완화가 일어났다면 그 지점을 q에 넣어서 기억
                 }
             }
             
@@ -84,5 +84,5 @@ int main() {
 // 도시방문할때 버는 돈은 양수
 
 // 벨만포드 알고리즘은 2중 for문으로 모든 간선을 확인해서 최단거리를 갱신하는데 보통은 V - 1까지만 돌리면 모든 거리가 완화가 일어나지만 
-// V - 1 이후에 또 다시 완화가 일어났다면  그것은 음의 사이클이 있다는 것을 의미합니다
+// V - 1 번째 이상에서 또 다시 완화가 일어났다면  그것은 음의 사이클이 있다는 것을 의미합니다
 
