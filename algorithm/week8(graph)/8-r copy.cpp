@@ -25,16 +25,16 @@ priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> 
 
 void djkstra (int *dist, vector<pair<int, int>> *adj) {
 
-    pq.push(make_pair(0, x));       
-    dist[x] = 0;                    // 출발지를 파티를 하는 마을 x로 지정하는 것
+    pq.push(make_pair(0, x));
+    dist[x] = 0;
     while(pq.size()) {
         int here = pq.top().second;
         int dist_here = pq.top().first;
         pq.pop();
         if (dist[here] != dist_here) continue;
         for (pair<int, int> there: adj[here]) {
-            int dist_there = there.first;
-            int next = there.second;
+            int next = there.first;
+            int dist_there = there.second;
             if (dist[next] > dist[here] + dist_there) {
                 dist[next] = dist[here] + dist_there;
                 pq.push(make_pair(dist[next], next));
@@ -70,7 +70,6 @@ int mainn() {
 
 // 다익스트라 문제
 // 플로이드워셜 인가 싶기도 하겠지만 도시 갯수 1000개 -> 시간초과
-// 프로이드워셜은 노드 갯수가 400개 이하에서 사용해야됨
 // 이 문제는 다시 출발 도시로 돌아오는 시간의 최대값을 구하는 문제
 
 // x -> a 이거는 다익스트라로 구하면됨, adj1[s].push_back(make_pair(t, e)) 주어진 입력값 그대로 이용
