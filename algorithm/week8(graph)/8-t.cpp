@@ -1,3 +1,4 @@
+// *
 // 문제
 // 대형 쇼핑몰에서 쇼핑을 마친 N명의 고객들이 계산을 하고 쇼핑몰을 떠나고자 계산대 앞에 줄을 서 있다. 각 고객은 커다란 짐수레(cart)에 물건을 담아 계산대로 간다. 
 // 쇼핑몰에는 아래 그림과 같이 K개의 계산대가 병렬로 배치되어 있다.  쇼핑몰 안내원들은 계산대에 온 사람들을 가장 빨리 계산을 마칠 수 있는 계산대로 안내를 한다. 
@@ -30,14 +31,14 @@ struct Cacher {
     int id, cost_time, cacher_id;
 }
 
-struct comp1 {
+struct comp1 {                                                                  // 계산대 순서를 위해서 pq에 들어갈 오퍼레이터
     bool operator(Cacher &a, Cacher &b) {
         if (a.cost_time == b.cost_time) return a.cacher_id > b.cacher_id;       // pq 쓸때는 반대로 해야 cacher_id가 젤 작은 게 위로 올라감
         a.cost_time > b.cost_time;                                              // 시간 적게 걸리는게 위로
     }
 }
 
-bool comp2 (Cacher &a, Cacher &b) {
+bool comp2 (Cacher &a, Cacher &b) {                                             // 
     if (a.cost_time == b.cost_time) return a.cacher_id > b.cacher_id;           // sort에서는 부등호대로, 즉 cacher_id가 큰 순서
         a.cost_time < b.cost_time;                                              // cost_time 적은 순서
 }
@@ -57,7 +58,7 @@ int main () {
             pq.push({id, _time, i+1});
             continue;
         }
-        pq.push({id, pq.top().cost_time+_time, pq.top().cacher_id});
+        pq.push({id, pq.top().cost_time+_time, pq.top().cacher_id});        // 이렇게 하면 해당 계산대의 해당 계산이 끝나는 시간이 cost_time에 기록됨 
         v.push_back(pq.top());  // 벡터에 계산대에 들어간 순서대로 쌓임
         pq.pop();
     }
@@ -67,7 +68,7 @@ int main () {
         pq.pop();
     }
     
-    sort(v.begin(), v.end(), comp2);    // 계산이 끝난 순서로 다시 정렬, 즉 쇼핑몰을 빠져나간 순서
+    sort(v.begin(), v.end(), comp2);    // Cacher의 cost_time이 해당 계산이 끝나는 시간이므로, comp2로 cost_time이 작은 순서로 정렬하면 계산이 빨리 끝난 순서로 다시 정렬, 즉 쇼핑몰을 빠져나간 순서
     for (int i=0; i<v.size(); i++) {
         ret += 1LL * (i+1) * v[i].id;   // 출력값 계산
     }
@@ -76,6 +77,10 @@ int main () {
     return 0;
 }
 
+// 여기서 주체가 손님이 아니라 계산대임이 핵심
+// 그래서 계산대와 손님을 하나의 struct로 묶음
+// 계산대가 계산하는 순서가 손님이 자기물건 계산하는 순서
+// 또한 계산대가 계산을 끝내는 순서가 손님이 마트를 떠나는 순서
 
 // 결국 누적합인 cost_time 이 가장 작은 계산대에 다음 회원이 들어가는 것
 // 그것을 priority_queue 정렬 후 
