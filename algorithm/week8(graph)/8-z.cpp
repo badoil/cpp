@@ -26,7 +26,7 @@
 using namespace std;
 
 int n, y, x, x1, y1, x2, y2, ret, _x[1000004], _y[1000004];
-pair<int> a[100004];
+pair<int, int> a[100004];
 vector<int>  check_y, check_x;
 
 
