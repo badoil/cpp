@@ -55,7 +55,7 @@ int main() {
         }
 
         if (x1>x2) swap(x1, x2);
-        for (int j=x1+1; j<x2; j++) {
+        for (int j=x1+1; j<=x2; j++) {
             _x[j]++;                    // x 선분 만들기
         }
     }
