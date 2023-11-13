@@ -49,7 +49,7 @@ int main() {
             q.push({ny, nx});
         }
     }
-    cout << visited[my-1][mx-1] << "\n";
+    cout << visited[my][mx] << "\n";
 
     // 디버깅
     for (int i=0; i<m; i++) {
