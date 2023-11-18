@@ -31,7 +31,7 @@ int main () {
         fill(dp, dp+10004, -1);
         int money = m1*100 + m2;            // 받은 두 정수를 하나의 정수로 합침
         for (int i=0; i<n; i++) {
-            scanf("%d %d.%d", &c, m1, m2);
+            scanf("%d %d.%d", &c, &m1, &m2);
             p = m1*100 + m2;
             for (int j=p; j<=money; j++) {
                 dp[j] = max(dp[j], dp[j-p]+c);      // 포인트
