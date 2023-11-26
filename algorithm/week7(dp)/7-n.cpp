@@ -43,7 +43,7 @@ void draw(int x, int y, int size, int val) {
 }
 
 void dfs(int y, int x, int cnt) {
-    if (cnt>=ret) return;           // 여러 가지 뻗어가는 중에 cnt가 ret 보다 크다?? 그럼 더 볼것도 없이 진행할 필요 없음
+    if (cnt>=ret) return;           // 여러 가지 뻗어가는 중에 색종이 갯수인 cnt가 ret 보다 크다?? 그럼 색종이의 최소갯수가 아니기 때문에 더 볼것도 없이 진행할 필요 없음
     if (x==n) {
         dfs(y+1, x, cnt);           // 한 줄의 끝까지 왔으면 다음줄로 넘어가기에 y+1 해줌
         return;
