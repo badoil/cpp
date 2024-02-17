@@ -1,3 +1,4 @@
+// *
 // 문제
 // 용사는 공주를 구하기 위해 무시무시한 용이 있는 던전으로 향하기로 하였습니다. 우선 용사는 용사 자신과 던전을 분석하였습니다.
 
@@ -44,7 +45,7 @@ bool check(ll mid) {
 
     for (int i=0; i<n; i++) {
         if (t[i] == 2) {
-            at += a[i];
+            init_at += a[i];     // 공격력 업
             mid = min(init_mid, mid+h[i]);  // 굳이 이렇게 할 필요 있나? 걍 mid += h[i], 이렇게 해도 되지 않나?
         } else {
             int attacking_cnt = (h[i]/init_at) + (h[i]%init_at? 1 : 0);     // 몬스터나 용을 죽이기 위해 필요한 공격횟수
